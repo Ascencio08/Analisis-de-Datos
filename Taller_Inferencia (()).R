@@ -4,32 +4,32 @@ library(dplyr)
 library(tidyr)
 
 # ── IMPORTAR ──────────────────────────────────────────────────────────────────
-fuerzat_mayo  <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Mayo 2025/CSV/Fuerza de trabajo.CSV",
+fuerzat_mayo  <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Mayo 2025/CSV/Fuerza de trabajo.CSV",
                             delim = ";", escape_double = FALSE, trim_ws = TRUE)
-fuerzat_junio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Junio 2025/CSV/Fuerza de trabajo.CSV",
+fuerzat_junio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Junio 2025/CSV/Fuerza de trabajo.CSV",
                             delim = ";", escape_double = FALSE, trim_ws = TRUE)
-fuerzat_julio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Julio 2025/CSV/Fuerza de trabajo.CSV",
-                            delim = ";", escape_double = FALSE, trim_ws = TRUE)
-
-no_ocup_mayo  <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Mayo 2025/CSV/No ocupados.CSV",
-                            delim = ";", escape_double = FALSE, trim_ws = TRUE)
-no_ocup_junio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Junio 2025/CSV/No ocupados.CSV",
-                            delim = ";", escape_double = FALSE, trim_ws = TRUE)
-no_ocup_julio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Julio 2025/CSV/No ocupados.CSV",
+fuerzat_julio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Julio 2025/CSV/Fuerza de trabajo.CSV",
                             delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
-ocupados_mayo  <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Mayo 2025/CSV/Ocupados.CSV",
+no_ocup_mayo  <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Mayo 2025/CSV/No ocupados.CSV",
+                            delim = ";", escape_double = FALSE, trim_ws = TRUE)
+no_ocup_junio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Junio 2025/CSV/No ocupados.CSV",
+                            delim = ";", escape_double = FALSE, trim_ws = TRUE)
+no_ocup_julio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Julio 2025/CSV/No ocupados.CSV",
+                            delim = ";", escape_double = FALSE, trim_ws = TRUE)
+
+ocupados_mayo  <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Mayo 2025/CSV/Ocupados.CSV",
                              delim = ";", escape_double = FALSE, trim_ws = TRUE)
-ocupados_junio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Junio 2025/CSV/Ocupados.CSV",
+ocupados_junio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Junio 2025/CSV/Ocupados.CSV",
                              delim = ";", escape_double = FALSE, trim_ws = TRUE)
-ocupados_julio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Julio 2025/CSV/Ocupados.CSV",
+ocupados_julio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Julio 2025/CSV/Ocupados.CSV",
                              delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
-caract_gral_mayo  <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Mayo 2025/CSV/Características generales, seguridad social en salud y educación.CSV",
+caract_gral_mayo  <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Mayo 2025/CSV/Características generales, seguridad social en salud y educación.CSV",
                                 delim = ";", escape_double = FALSE, trim_ws = TRUE)
-caract_gral_junio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Junio 2025/CSV/Características generales, seguridad social en salud y educación.CSV",
+caract_gral_junio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Junio 2025/CSV/Características generales, seguridad social en salud y educación.CSV",
                                 delim = ";", escape_double = FALSE, trim_ws = TRUE)
-caract_gral_julio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis de Datos/datos/Julio 2025/CSV/Características generales, seguridad social en salud y educación.CSV",
+caract_gral_julio <- read_delim("C:/Users/USUARIO/OneDrive/Documentos/7mo/Estadistica II/Analisis-de-Datos/datos/Julio 2025/CSV/Características generales, seguridad social en salud y educación.CSV",
                                 delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
 fuerzat <- bind_rows(fuerzat_mayo, fuerzat_junio, fuerzat_julio)
@@ -158,6 +158,7 @@ tabla_resumen <- tabla_resumen %>%
 print(tabla_resumen)
 
 # === ANÁLISIS NUMÉRICO VARIABLE CUALITATIVA ======================================================
+tabla_edu <- base %>%   
   filter(!is.na(nivel_educacion)) %>%
   count(nivel_educacion) %>%
   mutate(
@@ -298,7 +299,7 @@ print(analogia_edu)
 
 # === ESTIMACIÓN POR MÁXIMA VEROSIMILITUD =====================================
 
-# ── FUNCIÓN DE LOG-VEROSIMILITUD (normal) ─────────────────────────────────────
+# ── FUNCIÓN DE LOG-VEROSIMILITUD (normal) ───────────────────────────────────
 log_verosimilitud_normal <- function(params, datos) {
   mu    <- params[1]  # media
   sigma <- params[2]  # desviación estándar
@@ -314,7 +315,7 @@ optimizar_mle <- function(datos) {
     par    = c(mu = mean(datos), sigma = sd(datos)),  # valores iniciales
     fn     = log_verosimilitud_normal,
     datos  = datos,
-    method = "L-BFGS-B",                              # método eficiente O(n)
+    #method = "L-BFGS-B",                              # método eficiente O(n)
     lower  = c(-Inf, 1e-6)                            # sigma > 0
   )
 }
